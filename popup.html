@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    .header p {
+      margin: 5px 0 0 0;
+      opacity: 0.9;
+      font-size: 14px;
+    }
+    
+    .features {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .features h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: #fff;
+    }
+    
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .feature-list li {
+      padding: 6px 0;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.9;
+    }
+    
+    .feature-icon {
+      font-size: 16px;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .instructions {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .instructions h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      color: #fff;
+    }
+    
+    .instructions p {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+    
+    .status {
+      text-align: center;
+      margin-top: 16px;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎵 Playlist Manager</h1>
+    <p>Reorder your YouTube playlists</p>
+  </div>
+  
+  <div class="features">
+    <h3>✨ Features</h3>
+    <ul class="feature-list">
+      <li>
+        <span class="feature-icon">↕️</span>
+        <span>Reverse playlist order</span>
+      </li>
+      <li>
+        <span class="feature-icon">🔀</span>
+        <span>Shuffle videos randomly</span>
+      </li>
+      <li>
+        <span class="feature-icon">🔤</span>
+        <span>Sort alphabetically</span>
+      </li>
+      <li>
+        <span class="feature-icon">⏱️</span>
+        <span>Sort by duration</span>
+      </li>
+      <li>
+        <span class="feature-icon">📅</span>
+        <span>Sort by upload date</span>
+      </li>
+      <li>
+        <span class="feature-icon">🔄</span>
+        <span>Reset to original order</span>
+      </li>
+    </ul>
+  </div>
+  
+  <div class="instructions">
+    <h3>📋 How to Use</h3>
+    <p>1. Go to any YouTube playlist page</p>
+    <p>2. Look for the floating 🎵 button in the bottom-right corner</p>
+    <p>3. Click the button to open the options menu</p>
+    <p>4. Select any sorting option to reorder your playlist</p>
+    <p>5. Use "Reset" to restore original order</p>
+  </div>
+  
+  <div class="status" id="status">
+    Extension is ready! Visit a YouTube playlist to get started.
+  </div>
+
+  <script>
+    // Check if we're on YouTube
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+      const currentTab = tabs[0];
+      const statusEl = document.getElementById('status');
+      
+      if (currentTab.url && currentTab.url.includes('youtube.com')) {
+        if (currentTab.url.includes('playlist?list=')) {
+          statusEl.textContent = '✅ Playlist page detected! Look for the floating 🎵 button.';
+          statusEl.style.background = 'rgba(0, 208, 132, 0.2)';
+        } else {
+          statusEl.textContent = '📍 On YouTube. Navigate to a playlist to see the floating button.';
+          statusEl.style.background = 'rgba(255, 193, 7, 0.2)';
+        }
+      } else {
+        statusEl.textContent = '❌ Not on YouTube. Visit YouTube to use this extension.';
+        statusEl.style.background = 'rgba(255, 71, 87, 0.2)';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,257 @@
+/* YouTube Playlist Manager Styles - Floating Button Design */
+
+#playlist-manager-controls {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10000;
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Floating Toggle Button */
+.floating-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3ea6ff, #065fd4);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(62, 166, 255, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.floating-btn:hover {
+  background: linear-gradient(135deg, #4db8ff, #0768e0);
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(62, 166, 255, 0.5);
+}
+
+.floating-btn:active {
+  transform: scale(0.95);
+}
+
+/* Options Popup */
+.options-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  background: #0f0f23;
+  border: 2px solid #3ea6ff;
+  border-radius: 16px;
+  width: 280px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  transform: translateY(10px) scale(0.9);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.options-popup:not(.hidden) {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.options-popup.hidden {
+  transform: translateY(10px) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Popup Header */
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 12px 20px;
+  border-bottom: 1px solid rgba(62, 166, 255, 0.2);
+}
+
+.popup-header h3 {
+  color: #fff;
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  opacity: 0.7;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  opacity: 1;
+}
+
+/* Popup Content */
+.popup-content {
+  padding: 8px;
+}
+
+.option-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.option-btn:hover {
+  background: rgba(62, 166, 255, 0.15);
+  transform: translateX(4px);
+}
+
+.option-btn:active {
+  transform: translateX(2px) scale(0.98);
+}
+
+.option-btn .icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.option-btn .label {
+  flex: 1;
+}
+
+.reset-btn {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 8px;
+  padding-top: 16px;
+  margin-bottom: 0;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 107, 107, 0.15);
+}
+
+/* Notification styles */
+.playlist-notification {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  background: #00d084;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 14px;
+  z-index: 10001;
+  box-shadow: 0 4px 16px rgba(0, 208, 132, 0.3);
+  animation: notificationSlide 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.playlist-notification.error {
+  background: #ff4757;
+  box-shadow: 0 4px 16px rgba(255, 71, 87, 0.3);
+}
+
+@keyframes notificationSlide {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  #playlist-manager-controls {
+    bottom: 16px;
+    right: 16px;
+  }
+  
+  .floating-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  
+  .options-popup {
+    width: 240px;
+    bottom: 60px;
+  }
+  
+  .playlist-notification {
+    top: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+}
+
+/* Dark theme compatibility */
+[dark] .options-popup,
+html[dark] .options-popup {
+  background: #181818;
+  border-color: #3ea6ff;
+}
+
+/* Hide on very small screens to avoid interference */
+@media (max-width: 480px) {
+  .options-popup {
+    width: 200px;
+    right: -40px;
+  }
+  
+  .option-btn {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .option-btn .icon {
+    font-size: 16px;
+    width: 20px;
+  }
+}
+
+/* Animation for button appearance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+#playlist-manager-controls {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
