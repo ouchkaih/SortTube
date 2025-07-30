@@ -25,7 +25,7 @@ class PlaylistManager {
           rememberSort: settings.rememberSort !== false, // Default true
           defaultSort: settings.defaultSort || null,
           savedPlaylists: settings.savedPlaylists || {},
-          buttonPosition: settings.buttonPosition || { top: '20px', right: '20px' },
+          buttonPosition: settings.buttonPosition || { top: '0px', right: '20px' },
           notifications: settings.notifications !== false, // Default true
           theme: settings.theme || 'default'
         };
@@ -35,7 +35,7 @@ class PlaylistManager {
           rememberSort: true,
           defaultSort: null,
           savedPlaylists: {},
-          buttonPosition: { top: '20px', right: '20px' },
+          buttonPosition: { top: '0px', right: '20px' },
           notifications: true,
           theme: 'default'
         };
@@ -47,7 +47,7 @@ class PlaylistManager {
         rememberSort: true,
         defaultSort: null,
         savedPlaylists: {},
-        buttonPosition: { top: '20px', right: '20px' },
+        buttonPosition: { top: '0px', right: '20px' },
         notifications: true,
         theme: 'default'
       };
@@ -575,7 +575,6 @@ class PlaylistManager {
     floatingButton.innerHTML = `
       <button id="playlist-manager-toggle" class="floating-btn ${hasSavedState ? 'has-saved-state' : ''}" title="Playlist Manager">
         🎵
-        ${this.currentSortType ? '<div class="auto-sort-indicator">✓</div>' : ''}
       </button>
       <div id="playlist-options-popup" class="options-popup hidden">
         <div class="popup-header">
